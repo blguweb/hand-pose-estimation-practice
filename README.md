@@ -4,18 +4,21 @@ This is the content of the scientific research internship of my junior year. It 
 The basic network of this project is [SRHandNet](https://github.com/JiageWang/hand-pose-estimate) (gesture pose estimation) and [Classify-HandGesturePose](https://github.com/Prasad9/Classify-HandGesturePose) (gesture classification). Environment configuration can be obtained from there. 
 
 # Instructions
+
 ## Preparation
 1. Please go to their [README](https://github.com/lmb-freiburg/hand3d) pages to check the configuration of the environment and download [data](https://lmb.informatik.uni-freiburg.de/projects/hand3d/ColorHandPose3D_data_v3.zip),and unzip it into the projects root folder (This will create 3 folders: "data", "results" and "weights")
 2. Download hand.pts in [SRHandNet](https://github.com/JiageWang/hand-pose-estimate) and put it into the projects root folder.
 3. Download [videoDemo](https://github.com/JiageWang/hand-pose-estimate) into ./pose/
+
 ## Run the code
 
 ### Gesture command
 Replace all the files in ./scenes/order in the projects root folder,especially
-    *general.py in ./utils*
-    *DeterminePositions.py in ./pose*
+``` general.py in ./utils  DeterminePositions.py in ./pose  ```
 Run
-``` python joint_control.py ./pose/pose_video/control.mp4 ```
+``` 
+python joint_control.py ./pose/pose_video/control.mp4 
+```
 
 ### Perspective transformation
 Replace all the files in ./scenes\viewTransformation in the projects root folder,and run
@@ -33,6 +36,16 @@ python interation.py ./pose/pose_video/action.mp4
 ### Left-and-right-handed games
 Replace all the files in ./scenes\games in the projects root folder,and run
 ``` 
-python interationGame.py --pb-file=./Checkpoint/graph.pb 
+python interationGame.py --pb-fileC=./Checkpoint/graph.pb 
 ``` 
+# Classification training
+Run the code 
+``` 
+python build_datasets.py
+```
+so that you can get .csv file 
 
+``` 
+python pose/training/NeuralNetwork.py './csv/one2.csv, ./csv/two1.csv, ./csv/three1.csv, ./csv/four.csv, ./csv/five.csv'
+```
+you can get the graph.pb in ./Checkpoint.
